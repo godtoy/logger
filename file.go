@@ -47,7 +47,6 @@ type fileLogger struct {
 //  	"permit":"0600"
 //	}
 func (f *fileLogger) Init(jsonConfig string) error {
-	fmt.Printf("fileLogger Init:%s\n", jsonConfig)
 	if len(jsonConfig) == 0 {
 		return nil
 	}
