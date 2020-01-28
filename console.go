@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"runtime"
 	"sync"
 	"time"
 )
@@ -43,14 +42,10 @@ func (c *consoleLogger) Init(jsonConfig string) error {
 		return nil
 	}
 	if jsonConfig != "{}" {
-		fmt.Fprintf(os.Stdout, "consoleLogger Init:%s\n", jsonConfig)
+		_, _ = fmt.Fprintf(os.Stdout, "consoleLogger Init:%s\n", jsonConfig)
 	}
 
 	err := json.Unmarshal([]byte(jsonConfig), c)
-	if runtime.GOOS == "windows" {
-		c.Colorful = false
-	}
-
 	if l, ok := LevelMap[c.Level]; ok {
 		c.LogLevel = l
 		return nil
@@ -81,12 +76,13 @@ func (c *consoleLogger) Destroy() {
 func (c *consoleLogger) printlnConsole(when time.Time, msg string) {
 	c.Lock()
 	defer c.Unlock()
-	os.Stdout.Write(append([]byte(msg), '\n'))
+	_, _ = os.Stdout.Write(append([]byte(msg), '\n'))
 }
 
 func init() {
 	Register(AdapterConsole, &consoleLogger{
 		LogLevel: LevelDebug,
-		Colorful: runtime.GOOS != "windows",
+		//Colorful: runtime.GOOS != "windows",
+		Colorful: true,
 	})
 }
