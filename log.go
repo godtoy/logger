@@ -54,7 +54,7 @@ var levelPrefix = [LevelTrace + 1]string{
 }
 
 const (
-	logTimeDefaultFormat = "2006-01-02 15:04:05" // 日志输出默认格式
+	logTimeDefaultFormat = "2006-01-02 15:04:05.000" // 日志输出默认格式
 	AdapterConsole       = "console"             // 控制台输出配置项
 	AdapterFile          = "file"                // 文件输出配置项
 	AdapterConn          = "conn"                // 网络输出配置项
