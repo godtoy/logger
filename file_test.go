@@ -11,7 +11,7 @@ import (
 
 func TestFilePermit(t *testing.T) {
 	log := NewLogger()
-	log.SetLogger(AdapterFile, `{"filename":"test.log",
+	_ = log.SetLogger(AdapterFile, `{"filename":"test.log",
 	 "rotateperm": "0666",
 	"maxlines":100000,
 	"maxsize":1,
@@ -34,7 +34,7 @@ func TestFilePermit(t *testing.T) {
 	if file.Mode() != 0666 {
 		t.Fatal("unexpected log file permission")
 	}
-	os.Remove("test.log")
+	_ = os.Remove("test.log")
 }
 
 func TestFileLine(t *testing.T) {

@@ -277,7 +277,7 @@ func init() {
 		Daily:      true,
 		MaxDays:    7,
 		Append:     true,
-		LogLevel:   LevelDebug,
+		LogLevel:   LevelTrace,
 		PermitMask: "0777",
 		MaxLines:   10,
 		MaxSize:    10 * 1024 * 1024,
