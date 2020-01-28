@@ -3,7 +3,7 @@ convenient log package
 
 -   codes like beego/logs
 -   windows also need colorful
-
+-   fix sex colors
 
 # 1. 使用说明
 ```go

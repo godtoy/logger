@@ -2,7 +2,6 @@ package logger
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"sync"
 	"time"
@@ -20,14 +19,14 @@ func newBrush(color string) brush {
 
 //鉴于终端的通常使用习惯，一般白色和黑色字体是不可行的,所以30,37不可用，
 var colors = []brush{
-	newBrush("1;41"), // Emergency          红色底
-	newBrush("1;35"), // Alert              紫色
-	newBrush("1;34"), // Critical           蓝色
+	newBrush("1;32"), // Emergency          亮白色
+	newBrush("1;36"), // Alert              cyan
+	newBrush("1;35"), // Critical           magenta
 	newBrush("1;31"), // Error              红色
 	newBrush("1;33"), // Warn               黄色
-	newBrush("1;36"), // Informational      天蓝色
-	newBrush("1;32"), // Debug              绿色
-	newBrush("1;32"), // Trace              绿色
+	newBrush("1;34"), // Informational      天蓝色
+	newBrush("1;30"), // Debug              绿色
+	newBrush("1;38"), // Trace              Background
 }
 
 type consoleLogger struct {
@@ -40,9 +39,6 @@ type consoleLogger struct {
 func (c *consoleLogger) Init(jsonConfig string) error {
 	if len(jsonConfig) == 0 {
 		return nil
-	}
-	if jsonConfig != "{}" {
-		_, _ = fmt.Fprintf(os.Stdout, "consoleLogger Init:%s\n", jsonConfig)
 	}
 
 	err := json.Unmarshal([]byte(jsonConfig), c)
@@ -81,7 +77,7 @@ func (c *consoleLogger) printlnConsole(when time.Time, msg string) {
 
 func init() {
 	Register(AdapterConsole, &consoleLogger{
-		LogLevel: LevelDebug,
+		LogLevel: LevelTrace,
 		//Colorful: runtime.GOOS != "windows",
 		Colorful: true,
 	})

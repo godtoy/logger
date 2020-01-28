@@ -11,9 +11,9 @@ func testConsoleCalls(bl *LocalLogger) {
 	bl.Crit("critical")
 	bl.Error("error")
 	bl.Warn("warning")
-	bl.Debug("notice")
-	bl.Info("informational")
-	bl.Trace("trace")
+	bl.Debug("Debug")
+	bl.Info("Info")
+	bl.Trace("Trace")
 }
 
 func TestConsole(t *testing.T) {
