@@ -19,14 +19,14 @@ func newBrush(color string) brush {
 
 //鉴于终端的通常使用习惯，一般白色和黑色字体是不可行的,所以30,37不可用，
 var colors = []brush{
-	newBrush("1;32"), // Emergency          亮白色
-	newBrush("1;36"), // Alert              cyan
-	newBrush("1;35"), // Critical           magenta
+	newBrush("0;32"), // Emergency          亮白色
+	newBrush("0;36"), // Alert              cyan
+	newBrush("0;35"), // Critical           magenta
 	newBrush("1;31"), // Error              红色
-	newBrush("1;33"), // Warn               黄色
-	newBrush("1;34"), // Informational      天蓝色
-	newBrush("1;30"), // Debug              绿色
-	newBrush("1;38"), // Trace              Background
+	newBrush("0;33"), // Warn               黄色
+	newBrush("0;34"), // Informational      天蓝色
+	newBrush("0;39"), // Debug              绿色
+	newBrush("0;37"), // Trace              Background
 }
 
 type consoleLogger struct {
