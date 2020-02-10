@@ -11,7 +11,7 @@ import (
 
 func TestFilePermit(t *testing.T) {
 	log := NewLogger()
-	_ = log.SetLogger(AdapterFile, `{"filename":"test.log",
+	_ = log.SetLogger(AdapterFile, `{"filename":"./a/test.log",
 	 "rotateperm": "0666",
 	"maxlines":100000,
 	"maxsize":1,

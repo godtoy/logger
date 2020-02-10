@@ -55,9 +55,9 @@ var levelPrefix = [LevelTrace + 1]string{
 
 const (
 	logTimeDefaultFormat = "2006-01-02 15:04:05.000" // 日志输出默认格式
-	AdapterConsole       = "console"             // 控制台输出配置项
-	AdapterFile          = "file"                // 文件输出配置项
-	AdapterConn          = "conn"                // 网络输出配置项
+	AdapterConsole       = "console"                 // 控制台输出配置项
+	AdapterFile          = "file"                    // 文件输出配置项
+	AdapterConn          = "conn"                    // 网络输出配置项
 )
 
 // log provider interface
@@ -161,8 +161,7 @@ func (this *LocalLogger) SetLogger(adapterName string, configs ...string) error 
 
 	err := logger.Init(config)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "logger Init <%s> err:%v, %s output ignore!\n",
-			adapterName, err, adapterName)
+		_, _ = fmt.Fprintf(os.Stderr, "logger Init <%s> err:%v, %s output ignore!\n", adapterName, err, adapterName)
 		return err
 	}
 	if num >= 0 {

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -118,6 +119,13 @@ func (f *fileLogger) LogWrite(when time.Time, msgText interface{}, level int) er
 func (f *fileLogger) createLogFile() (*os.File, error) {
 	// Open the log file
 	perm, err := strconv.ParseInt(f.PermitMask, 8, 64)
+	if err != nil {
+		return nil, err
+	}
+
+	//godtoy: 判断文件夹是否存在
+	var dir = path.Dir(f.Filename)
+	err = PathCheckAndCreate(dir)
 	if err != nil {
 		return nil, err
 	}
@@ -282,4 +290,22 @@ func init() {
 		MaxLines:   10,
 		MaxSize:    10 * 1024 * 1024,
 	})
+}
+
+func PathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+func PathCheckAndCreate(s string) error {
+	ext, err := PathExists(s)
+	if !ext {
+		return os.MkdirAll(s, os.ModePerm)
+	}
+	return err
 }
