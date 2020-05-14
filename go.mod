@@ -1,4 +1,4 @@
-module zhaojunlike/logger
+module github.com/godtoy/logger
 
 go 1.13
 
